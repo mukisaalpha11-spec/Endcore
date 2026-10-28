@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIQUID GLASS · DAILY WORLD</title>
+  <!-- Google Fonts for modern look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at 20% 30%, #0b0e1a, #03050c);
+      min-height: 100vh;
+      color: #fff;
+      padding: 2rem 2rem 4rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* liquid glass blobs / background animation */
+    .liquid-blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.45;
+      z-index: 0;
+      animation: floatBlob 18s infinite alternate ease-in-out;
+    }
+
+    .blob-1 {
+      width: 500px;
+      height: 500px;
+      background: #ff3c7d;
+      top: -150px;
+      left: -100px;
+      animation-duration: 22s;
+    }
+
+    .blob-2 {
+      width: 600px;
+      height: 600px;
+      background: #1e90ff;
+      bottom: -200px;
+      right: -100px;
+      animation-duration: 26s;
+      animation-delay: -5s;
+      opacity: 0.35;
+    }
+
+    .blob-3 {
+      width: 400px;
+      height: 400px;
+      background: #b300ff;
+      top: 40%;
+      left: 60%;
+      animation-duration: 20s;
+      animation-delay: -8s;
+      opacity: 0.3;
+    }
+
+    .blob-4 {
+      width: 350px;
+      height: 350px;
+      background: #00e0c0;
+      bottom: 10%;
+      left: 10%;
+      animation-duration: 24s;
+      animation-delay: -3s;
+      opacity: 0.25;
+    }
+
+    @keyframes floatBlob {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(60px, -40px) scale(1.1); }
+      100% { transform: translate(-30px, 50px) scale(0.95); }
+    }
+
+    /* main container */
+    .glass-wrapper {
+      position: relative;
+      z-index: 5;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* header – liquid glass effect */
+    .header-glass {
+      background: rgba(20, 25, 45, 0.35);
+      backdrop-filter: blur(18px) saturate(200%);
+      -webkit-backdrop-filter: blur(18px) saturate(200%);
+      border-radius: 48px;
+      padding: 1rem 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 0 40px rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+      transition: all 0.4s ease;
+      animation: slideDown 0.8s cubic-bezier(0.2, 0.9, 0.3, 1);
+    }
+
+    .header-glass:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), inset 0 0 60px rgba(255, 255, 255, 0.1);
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.9rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #fff, #aad0ff, #f0b0ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    }
+
+    .logo i {
+      font-size: 2.2rem;
+      background: none;
+      -webkit-background-clip: unset;
+      background-clip: unset;
+      color: #fff;
+      filter: drop-shadow(0 0 15px #7aa2ff);
+      animation: pulseGlow 3s infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { filter: drop-shadow(0 0 5px #7aa2ff); }
+      100% { filter: drop-shadow(0 0 25px #d47aff); }
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 0.4rem 0.2rem;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #ff3c7d, #1e90ff, #b300ff);
+      transition: width 0.4s ease;
+      border-radius: 4px;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+      text-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* headline banner – glass morph */
+    .breaking-banner {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border-radius: 60px;
+      padding: 1rem 2.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      margin-bottom: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      transition: all 0.3s ease;
+      animation: fadeInUp 1s 0.1s both;
+    }
+
+    .breaking-banner i {
+      color: #ff4d6d;
+      font-size: 2rem;
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; filter: drop-shadow(0 0 8px #ff4d6d); }
+      50% { opacity: 0.5; filter: drop-shadow(0 0 2px #ff4d6d); }
+    }
+
+    .breaking-text {
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      background: linear-gradient(120deg, #fff, #b8d0ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* news grid */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    /* card style — liquid glass core */
+    .news-card {
+      background: rgba(30, 35, 55, 0.3);
+      backdrop-filter: blur(16px) saturate(200%);
+      -webkit-backdrop-filter: blur(16px) saturate(200%);
+      border-radius: 32px;
+      padding: 1.8rem 1.6rem 1.6rem;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.6), inset 0 0 30px rgba(255, 255, 255, 0.03);
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+      animation: cardAppear 0.9s ease backwards;
+      transform-origin: center;
+      cursor: pointer;
+    }
+
+    .news-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.15), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+
+    .news-card:hover::before {
+      opacity: 1;
+    }
+
+    .news-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      border-color: rgba(255, 255, 255, 0.45);
+      box-shadow: 0 35px 60px -15px #000000cc, inset 0 0 50px rgba(255, 255, 255, 0.08);
+      background: rgba(40, 48, 75, 0.4);
+    }
+
+    /* stagger animation delays */
+    .news-card:nth-child(1) { animation-delay: 0.05s; }
+    .news-card:nth-child(2) { animation-delay: 0.15s; }
+    .news-card:nth-child(3) { animation-delay: 0.25s; }
+    .news-card:nth-child(4) { animation-delay: 0.35s; }
+    .news-card:nth-child(5) { animation-delay: 0.45s; }
+    .news-card:nth-child(6) { animation-delay: 0.55s; }
+
+    @keyframes cardAppear {
+      from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* card elements */
+    .card-category {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      border-radius: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      width: fit-content;
+      color: #c6dcff;
+      transition: 0.3s;
+    }
+
+    .news-card:hover .card-category {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: #ffffff80;
+      color: #fff;
+    }
+
+    .card-title {
+      font-size: 1.7rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-excerpt {
+      font-size: 0.98rem;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.7);
+      transition: color 0.3s;
+      flex: 1;
+    }
+
+    .news-card:hover .card-excerpt {
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.5);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1.2rem;
+      margin-top: 0.4rem;
+      transition: border-color 0.3s;
+    }
+
+    .news-card:hover .card-meta {
+      border-top-color: rgba(255, 255, 255, 0.3);
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .card-meta i {
+      margin-right: 5px;
+      color: #7aa2ff;
+    }
+
+    .card-meta .read-more {
+      font-weight: 600;
+      color: #b8d0ff;
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .news-card:hover .read-more {
+      color: #fff;
+      transform: translateX(5px);
+      text-shadow: 0 0 8px #ffffff;
+    }
+
+    /* large featured card (optional, for variety) */
+    .news-card.featured {
+      grid-column: span 2;
+    }
+
+    @media (max-width: 800px) {
+      .news-card.featured {
+        grid-column: span 1;
+      }
+      body { padding: 1.2rem; }
+      .header-glass { flex-direction: column; gap: 1rem; align-items: flex-start; }
+      .nav-links { flex-wrap: wrap; gap: 1rem; }
+      .logo { font-size: 1.6rem; }
+    }
+
+    /* footer — glass */
+    .footer-glass {
+      margin-top: 4rem;
+      background: rgba(20, 25, 45, 0.3);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border-radius: 40px;
+      padding: 2rem 2.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+      transition: 0.3s;
+    }
+
+    .footer-glass:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .footer-copy {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.95rem;
+    }
+
+    .social-icons i {
+      font-size: 1.6rem;
+      margin-left: 1.2rem;
+      color: rgba(255, 255, 255, 0.7);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .social-icons i:hover {
+      color: #fff;
+      transform: scale(1.25) translateY(-3px);
+      filter: drop-shadow(0 0 15px #b8aaff);
+    }
+
+    /* moving gradient text for extra flavor */
+    .gradient-move {
+      background: linear-gradient(90deg, #ff7eb3, #7aa2ff, #b983ff, #7aa2ff, #ff7eb3);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: gradientShift 8s infinite linear;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 300% 50%; }
+    }
+
+    /* live pulse dot */
+    .live-dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background: #ff3c7d;
+      border-radius: 50%;
+      margin-right: 8px;
+      box-shadow: 0 0 15px #ff3c7d;
+      animation: livePulse 1.2s infinite;
+    }
+
+    @keyframes livePulse {
+      0% { opacity: 0.5; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1.3); }
+    }
+
+    /* scrollbar styling (optional) */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a0d18;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <!-- Liquid blobs (background animation) -->
+  <div class="liquid-blob blob-1"></div>
+  <div class="liquid-blob blob-2"></div>
+  <div class="liquid-blob blob-3"></div>
+  <div class="liquid-blob blob-4"></div>
+
+  <div class="glass-wrapper">
+    <!-- Header with liquid glass -->
+    <header class="header-glass">
+      <div class="logo">
+        <i class="fas fa-newspaper"></i>
+        <span>LIQUID<span style="font-weight:300;">GLASS</span></span>
+      </div>
+      <div class="nav-links">
+        <a href="#">World</a>
+        <a href="#">Politics</a>
+        <a href="#">Tech</a>
+        <a href="#">Culture</a>
+        <a href="#">Science</a>
+      </div>
+    </header>
+
+    <!-- Breaking banner (liquid glass) -->
+    <div class="breaking-banner">
+      <i class="fas fa-bolt"></i>
+      <div class="breaking-text">
+        <span class="live-dot"></span> BREAKING · Global climate summit reaches historic agreement
+      </div>
+    </div>
+
+    <!-- News grid -->
+    <div class="news-grid">
+      <!-- card 1 -->
+      <article class="news-card">
+        <span class="card-category">World</span>
+        <h2 class="card-title">UN Climate Summit: 150 Nations Pledge Net-Zero by 2045</h2>
+        <p class="card-excerpt">In a landmark decision, world leaders have agreed to accelerate the transition to renewable energy and phase out fossil fuel subsidies.</p>
+        <div class="card-meta">
+          <span><i class="far fa-clock"></i> 12 min ago</span>
+          <span class="read-more">Read <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </article>
+
+      <!-- card 2 -->
+      <article class="news-card">
+        <span class="card-category">Technology</span>
+        <h2 class="card-title">Quantum Leap: New Chip Solves Problems in Seconds</h2>
+        <p class="card-excerpt">A startup unveils a quantum processor that could revolutionize drug discovery and AI, leaving classical computers in the dust.</p>
+        <div class="card-meta">
+          <span><i class="far fa-clock"></i> 32 min ago</span>
+          <span class="read-more">Read <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </article>
+
+      <!-- card 3 -->
+      <article class="news-card">
+        <span class="card-category">Politics</span>
+        <h2 class="card-title">Historic Peace Deal Signed in Middle East</h2>
+        <p class="card-excerpt">After months of negotiations, a comprehensive peace agreement has been reached, ending decades of conflict.</p>
+        <div class="card-meta">
+          <span><i class="far fa-clock"></i> 1 hour ago</span>
+          <span class="read-more">Read <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </article>
+
+      <!-- card 4 -->
+      <article class="news-card">
+        <span class="card-category">Science</span>
+        <h2 class="card-title">Mars Sample Return: First Rocks Arrive on Earth</h2>
+        <p class="card-excerpt">NASA and ESA successfully deliver pristine Martian samples, opening a new era of planetary science.</p>
+        <div class="card-meta">
+          <span><i class="far fa-clock"></i> 2 hours ago</span>
+          <span class="read-more">Read <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </article>
+
+      <!-- card 5 -->
+      <article class="news-card">
+        <span class="card-category">Culture</span>
+        <h2 class="card-title">Biennale di Venezia: Digital Art Takes Center Stage</h2>
+        <p class="card-excerpt">Immersive installations and AI-generated art dominate this year's edition, blurring the lines between creator and algorithm.</p>
+        <div class="card-meta">
+          <span><i class="far fa-clock"></i> 3 hours ago</span>
+          <span class="read-more">Read <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </article>
+
+      <!-- card 6 (featured wider card) -->
+      <article class="news-card featured">
+        <span class="card-category">Economy</span>
+        <h2 class="card-title">Global Markets Surge on Green Energy Boom</h2>
+        <p class="card-excerpt">Renewable energy stocks hit record highs as investors pour billions into solar and wind projects. Analysts predict a sustained rally through 2026.</p>
+        <div class="card-meta">
+          <span><i class="far fa-clock"></i> 45 min ago</span>
+          <span class="read-more">Read <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </article>
+    </div>
+
+    <!-- Footer liquid glass -->
+    <footer class="footer-glass">
+      <div class="footer-copy">
+        <i class="fas fa-globe-americas" style="margin-right: 8px; color: #7aa2ff;"></i> 
+        LIQUID GLASS · Daily World News © 2025
+      </div>
+      <div class="social-icons">
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-linkedin-in"></i>
+        <i class="fas fa-rss"></i>
+      </div>
+    </footer>
+  </div>
+
+  <!-- tiny script for extra micro-interaction (optional) — could remove, but it's nice -->
+  <script>
+    (function() {
+      // Add a subtle parallax effect to the blobs based on mouse position
+      const blobs = document.querySelectorAll('.liquid-blob');
+      document.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 30;
+        const y = (e.clientY / window.innerHeight - 0.5) * 20;
+        blobs.forEach((blob, index) => {
+          const speed = 0.5 + index * 0.15;
+          blob.style.transform = `translate(${x * speed}px, ${y * speed}px) scale(1)`;
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
